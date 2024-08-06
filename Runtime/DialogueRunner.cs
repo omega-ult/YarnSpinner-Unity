@@ -1530,5 +1530,17 @@ namespace Yarn.Unity
             public string[] boolKeys;
             public bool[] boolValues;
         }
+        
+        public void RefreshViews()
+        {
+            foreach (var view in dialogueViews)
+            {
+                if (view == null)
+                {
+                    continue;
+                }
+                view.requestInterrupt = OnViewRequestedInterrupt;
+            }
+        }
     }
 }
