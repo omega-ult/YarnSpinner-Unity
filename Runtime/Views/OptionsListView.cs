@@ -32,6 +32,7 @@ namespace Yarn.Unity
 
         [SerializeField] TextMeshProUGUI lastLineCharacterNameText;
         [SerializeField] GameObject lastLineCharacterNameContainer;
+        [SerializeField] RectTransform optionViewListRoot;
 
         // A cached pool of OptionView objects so that we can reuse them
         List<OptionView> optionViews = new List<OptionView>();
@@ -158,7 +159,14 @@ namespace Yarn.Unity
             OptionView CreateNewOptionView()
             {
                 var optionView = Instantiate(optionViewPrefab);
-                optionView.transform.SetParent(transform, false);
+                if (optionViewListRoot != null)
+                {
+                    optionView.transform.SetParent(optionViewListRoot, false);
+                }
+                else
+                {
+                    optionView.transform.SetParent(transform, false);
+                }
                 optionView.transform.SetAsLastSibling();
 
                 optionView.OnOptionSelected = OptionViewWasSelected;
