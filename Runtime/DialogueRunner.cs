@@ -66,7 +66,7 @@ namespace Yarn.Unity
         /// <remarks>
         /// The node specified by <see cref="startNode"/> will be used.
         /// </remarks>
-        public bool startAutomatically = true;
+        public bool startAutomatically = false;
 
         /// <summary>
         /// If true, when an option is selected, it's as though it were a
@@ -81,7 +81,7 @@ namespace Yarn.Unity
         /// node, and other frequent events.
         /// </summary>
         [Tooltip("If true, will print Debug.Log messages every time it enters a node, and other frequent events")]
-        public bool verboseLogging = true;
+        public bool verboseLogging = false;
 
         /// <summary>
         /// Gets a value that indicates if the dialogue is actively
