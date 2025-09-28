@@ -870,7 +870,11 @@ namespace Yarn.Unity
                     } else {
                         // We're out of ways to handle this command! Log this as an
                         // error.
+                        Debug.Log($"Current running {gameObject.name} -> [{yarnProject.name}][{CurrentNodeName}]({command.Text})");
+                        Debug.Log($"{string.Join(",", CommandDispatcher.Commands.Select(x=>x.Name))}" );
                         Debug.LogError($"No Command \"{commandName}\" was found. Did you remember to use the YarnCommand attribute or AddCommandHandler() function in C#?");
+                        // Force continue.
+                        ContinueDialogue();
                     }
                     return;
                 default:

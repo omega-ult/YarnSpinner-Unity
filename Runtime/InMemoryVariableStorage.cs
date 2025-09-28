@@ -159,6 +159,14 @@ namespace Yarn.Unity
             variableTypes[variableName] = typeof(bool);
         }
 
+        public void SetValue(string variableName, GameObject value)
+        {
+            ValidateVariableName(variableName);
+
+            variables[variableName] = value;
+            variableTypes[variableName] = typeof(GameObject);
+        }
+
         /// <summary>
         /// Retrieves a <see cref="Value"/> by name.
         /// </summary>
@@ -193,6 +201,23 @@ namespace Yarn.Unity
             {
                 throw new System.InvalidCastException($"Variable {variableName} exists, but is the wrong type (expected {typeof(T)}, got {resultObject.GetType()}");
             }
+        }
+
+        public bool TryGetValue(string variableName, out object result)
+        {
+            ValidateVariableName(variableName);
+
+            // If we don't have a variable with this name, return the null
+            // value
+            if (variables.ContainsKey(variableName) == false)
+            {
+                result = default;
+                return false;
+            }
+
+            result = variables[variableName];
+            return true;
+
         }
 
         /// <summary>
